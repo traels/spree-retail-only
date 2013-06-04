@@ -12,7 +12,7 @@ Installation
 Add spree_retail_only to your Gemfile:
 
 ```ruby
-gem 'spree_retail_only'
+gem 'spree_retail_only', github: 'traels/spree-retail-only'
 ```
 
 Bundle your dependencies and run the installation generator:
