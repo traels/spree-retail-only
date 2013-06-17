@@ -20,9 +20,9 @@ Spree::TaxonsHelper.class_eval do
         to_get = max - products.length
         subproducts = taxon.active_products
         if spree_current_user and spree_current_user.has_spree_role? :retail
-          subproducts = products.where("#{Spree::Product.quoted_table_name}.retail_only = ?", true)
+          subproducts = subproducts.where("#{Spree::Product.quoted_table_name}.retail_only = ?", true)
         else
-          subproducts = products.where("#{Spree::Product.quoted_table_name}.retail_only != ?", true)
+          subproducts = subproducts.where("#{Spree::Product.quoted_table_name}.retail_only != ?", true)
         end
         products += subproducts.limit(to_get)
         products = products.uniq
