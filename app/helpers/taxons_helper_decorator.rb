@@ -30,6 +30,6 @@ Spree::TaxonsHelper.class_eval do
       end
     end
 
-
+    products
  end
 end
