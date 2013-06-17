@@ -36,6 +36,24 @@ describe "Spree::Product" do
       page.should have_content(product1.name)
     end
 
+    it "should only see retail products in taxon product list" do      
+      taxonomy = create(:taxonomy)
+      root_taxon = taxonomy.root
+      child_taxon = create(:taxon, :taxonomy_id => taxonomy.id, :parent => root_taxon)
+      product1 = create(:product, :retail_only => true)
+      product1.taxons = [child_taxon]
+      product1.save
+      product2 = create(:product, :retail_only => false)
+      product2.taxons = [child_taxon]
+      product2.save
+      user = create(:retail_user, :email => "user@person.com", :password => "secret", :password_confirmation => "secret")
+      sign_in_as!(user)
+      visit "/t/#{root_taxon.permalink}"
+#      page.all('li[@data-hook="products_list_item"]').count.should == 1 # product is listed twice due to current Spree shop setup
+      page.should have_content(product1.name)
+      page.should_not have_content(product2.name)
+    end
+
     it "should be able to see retail-only productcard" do
       retail = create(:product, :retail_only => true)
       non_retail = create(:product, :retail_only => false)
