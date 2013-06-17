@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_retail_only'
-  s.version     = '0.1.3'
+  s.version     = '0.1.4'
   s.summary     = 'Creates products that are only avaiblable for retail users'
   s.description = 'Creates a retail role and a checkbox on all products to make them avaiblable for retail only.'
   s.required_ruby_version = '>= 1.9.3'
