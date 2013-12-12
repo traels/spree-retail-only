@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'spree', github: 'spree/spree', branch: '2-0-stable'
+gem 'spree', github: 'spree/spree', branch: '2-1-stable'
 
 # Provides basic authentication functionality for testing parts of your engine
-gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '2-0-stable'
+gem 'spree_auth_devise', github: 'spree/spree_auth_devise', branch: '2-1-stable'
+#gem 'protected_attributes'
 
 group :test do
   gem 'therubyracer', :platforms => :ruby
