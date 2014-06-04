@@ -36,7 +36,7 @@ describe "Spree::Product" do
       page.should have_content(product1.name)
     end
 
-    it "should only see retail products in taxon product list" do      
+    it "should only see retail products in taxon product list" do
       taxonomy = create(:taxonomy)
       root_taxon = taxonomy.root
       child_taxon = create(:taxon, :taxonomy_id => taxonomy.id, :parent => root_taxon)
@@ -71,7 +71,7 @@ describe "Spree::Product" do
       non_retail = create(:product, :retail_only => false)
       user = create(:retail_user, :email => "user@person.com", :password => "secret", :password_confirmation => "secret")
       sign_in_as!(user)
-      visit "/products/#{retail.permalink}"
+      visit "/products/#{retail.to_param}"
       page.status_code.should == 200
     end
 
@@ -79,7 +79,7 @@ describe "Spree::Product" do
       retail = create(:product, :retail_only => true)
       non_retail = create(:product, :retail_only => false)
       user = create(:retail_user, :email => "user@person.com", :password => "secret", :password_confirmation => "secret")
-      visit "/products/#{non_retail.permalink}"
+      visit "/products/#{non_retail.to_param}"
       click_button('Add To Cart')
       sign_in_as!(user)
       visit "/cart"
